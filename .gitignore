@@ -1,0 +1,21 @@
+
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temporary outputs
+outputs/session_log.txt
+*.log
+*.tmp
+
+# Ignore Python or notebook caches (if any)
+__pycache__/
+.ipynb_checkpoints/
+
+# Ignore large datasets (optional)
+data/*.zip
+data/*.xlsx
+
+# Ignore backup files
+*~

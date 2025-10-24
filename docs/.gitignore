@@ -1,0 +1,14 @@
+# Ignore system and temporary files
+*.log
+*.tmp
+*.bak
+
+# Ignore MySQL backup or dump files
+*.sql~
+*.sql.bak
+
+# Ignore local output logs if you want
+outputs/*.txt
+
+# Keep placeholder for outputs
+!outputs/.gitkeep
