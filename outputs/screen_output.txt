@@ -1,0 +1,211 @@
+Script started on 2025-10-24 00:15:17+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="104" LINES="36"]
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ # c[KCopy d[KData File f[K[Ks fro[K[K[K[K From Repository
+[?2004l[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7mcp ~/assessments/hpdm206Z/assessment1/*.csv data/[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccp ~/assessments/hpdm206Z/assessment1/*.csv data/
+[?2004l[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ # Confirm the Data
+[?2004l[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7mls data[27mls data/
+[?2004ldoctors.csv  hospitals.csv  patients.csv  prescriptions.csv
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ t=[K[K# xg=[K[K[K/c==[K[K[K[K[K Cgec[K[K[K[Kh[Kch[K[Kcccch[K[K[K[K[KCe[Kheck the structure[C[C[1P[1@T[C[C[C[C[1PtructureStructure[C[C[C[C[C[C[C[C
+[?2004l[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ tree
+[?2004l[01;34m.[0m
+├── [01;34mdata[0m
+│   ├── doctors.csv
+│   ├── hospitals.csv
+│   ├── patients.csv
+│   └── prescriptions.csv
+├── [01;34mdocs[0m
+├── [01;34moutputs[0m
+│   └── screen_output.txt
+└── [01;34msql[0m
+
+4 directories, 5 files
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7m# View the data Structure before creating database[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# View the data Structure before creating databaseh[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@ [1@H[C[1@e[1@a[1@d[1@i[1@n[1@g[1@s[C[1P[C[1@ [C[C[1P[1@B[1P[C[C[C[C[C[C[C[C[1P[1@C[C[C[C[C[C[C[C[C[C[1PatabasehCatabaseh[C[1Patabasehdatabaseh[1Patabasehdatabaseh[1Patabaseh[Cdtabaseh[1PtabasehDtabaseh[1Ptabaseh[1Ptabasehdtabaseh[1Ptabasehdtabasehdtabasehdtabaseh[1Ptabaseh[1Ptabaseh[1PtabasehDtabasehatabaseh[C[C[C[C[C[C[C[K[1P[1@D[1P[1@T[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?2004l[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7mhead -n 1 data/doctors.csv[27mhead -n 1 data/doctors.csv
+[?2004lperson_id,name,date_of_birth,address,role,hospital_id
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7mhead -n 1 data/patients.csv[27mhead -n 1 data/patients.csv
+[?2004lperson_id,name,date_of_birth,address,role,doctor_id
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7mhead -n 1 data/prescriptions.csv[27mhead -n 1 data/prescriptions.csv
+[?2004lprescription_id,patient_id,doctor_id,medication,prescription_date
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7m# Open MySQL and Create Database[27m# Open MySQL and Create Database
+[?2004l[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7m# Enable Local-infile: Essential for importing the CSV files from OpenSta[27m[7mc[27m[7mk repository[27m[A]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ # Enable Local-infile: Essential for importing the CSV files from OpenStack repository
+[?2004l[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7mmysql --local-infile=1 -u hds -p[27mmysql --local-infile=1 -u hds -p
+[?2004lEnter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 65
+Server version: 8.0.43-0ubuntu0.22.04.2 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> # Create Database named healthdb;
+mysql> create database  healthdb;
+Query OK, 1 row affected (0.11 sec)
+
+mysql> # s[10G[KStar[13G[K[12G[K[11G[K[10G[K[9G w[10G[KWorking in the[23G[K[22G[K[21G[KThe Databse[31G[K[30G[Ke[30G[K[29G[Kse f[32G[KFoled[36G[K[35G[Kdre[37G[K[36G[K[35G[K[34G[K[33G[K[32G[K[31G[30G[K[29G[K[28G[K[27G[K[26G[K[25G[K[24G[23G[K[22G[K[21G[K[20G[19G[K[18G[K[17G with [22G[21G[K[20G[K[19G[K[18G[KWith Databel[29G[K[28G[K[27G[Kbase Fol[34G[K[33G[K[32G[K[31G Fole[35G[Kder
+mysql> Use[10G[K[9G[K[8G[Kuse healthdb;
+Database changed
+mysql> # Create Tables
+mysql> # Hospitals Table
+mysql> create table hospitals (hospital_id INT PRIMARY KEY, name VARCHAR(100),
+    -> address VARCHAR(200),
+    -> size INT,
+    -> type VARCHAR(50),
+    -> accreditation_status VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.53 sec)
+
+mysql> # Doctors table[18Gable[K[18GTableable
+mysql> CREATE TABLE Doctors (
+    ->   doctor_id INT PRIMARY KEY,
+    ->   name VARCHAR(100),
+    ->   date_of_birth DATE,
+    ->   address VARCHAR(150),
+    ->   role VARCHAR(50),
+    ->   hospital_id INT,
+    ->   FOREIGN KEY (hospital_id) REFERENCES Hospitals(hospital_id)
+    -> );
+ERROR 1824 (HY000): Failed to open the referenced table 'Hospitals'
+mysql> create table doctors (
+    -> person_id INT PRIMARY KEY,
+    -> name VARCHAR(100),
+    -> date_of_birth DATE,
+    -> address VARCHAR(200),
+    -> role VARCHAR(50),
+    -> FOREIGN KEY (hospital_id) REFERENCES hospitals(hospital_id)
+    -> );
+ERROR 1072 (42000): Key column 'hospital_id' doesn't exist in table
+mysql> [8Gcreate table doctors ( person_id INT PRIMARY KEY, name VARCHAR(100), date_of_birth DATE, address
+VARCHAR(200), role VARCHAR(50), FOREIGN KEY (hospital_id) REFERENCES hospitals(hospital_id) );[94G[K[93G[K[92G[91G[K[90G[K[89G[K[88G[K[87G[K[86G[K[85G[K[84G[K[83G[K[82G[K[81G[K[80G[K[79G[K[78G[K[77G[K[76G[K[75G[K[74G[K[73G[K[72G[K[71G[K[70G[K[69G[68G[K[67G[K[66G[K[65G[K[64G[K[63G[K[62G[K[61G[K[60G[K[59G[K[58G[57G[K[56G[K[55G[K[54G[K[53G[K[52G[K[51G[K[50G[K[49G[K[48G[K[47G[K[46G[K[45G[K[44G[43G[K[42G[K[41G[K[40G[39G[K[38G[K[37G[K[36G[K[35G[K[34G[K[33G[K[32G[31G[K[30G[K[29G[K[28G[K[27G[K[26G[K[25G[K[24G[K[23G[K[22G[K[21G[K[20G[K[19G[18G[K[17G[K[16G[K[15G[K[14G [14G f[15G[Krole[18G[K[17G[K[16G[K[15G[Krole VARCHAR(50), hospital_id INT, FOREIGN KEY (hospital_id) REFERENCES hospitals(hospital _id) );
+Query OK, 0 rows affected (0.45 sec)
+
+mysql> # Patients Table
+mysql> create table patients (
+    ->     person_id INT PRIMARY KEY,
+    ->      name VARCHAR(100),
+    ->      date_of_birth DATE,
+    ->     address VARCHAR(200),
+    ->     role VARCHAR(50),
+    ->     doctor_id INT,
+    ->     FOREIGN KEY (doctor_id) REFERENCES doctors(person_id)
+    ->      );
+Query OK, 0 rows affected (0.57 sec)
+
+mysql> # Prescriptions Table
+mysql> create table prescriptions (
+    -> prescription_id INT PRIMARY KEY,
+    ->      patient_id INT,
+    -> doctor_id INT,
+    -> medication VARCHAR(100),
+    -> prescription_date DATE,
+    -> FOREIGN KEY (patient_id) REFERENCES patients(person_id),
+    -> FOREIGN KEY (doctor_id) REFERENCES doctors(person_id)
+    -> );
+Query OK, 0 rows affected (0.72 sec)
+
+mysql> # Check that all tables exist
+mysql> show tables;
++--------------------+
+| Tables_in_healthdb |
++--------------------+
+| doctors            |
+| hospitals          |
+| patients           |
+| prescriptions      |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql> # Load CSV Data Into Tables
+mysql> # Local-infile, already enabled: Essential for importing the CSV files from OpenSta ck repository
+mysql> mysql> load data infile '/var/lib/mysql-files/hospitals.csv'
+    -> into table hospitals
+    -> fields terminated by ','
+    -> optionally enclosed by '"'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (hospital_id, name, address, size, type, accreditation_status);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> load data infile '/var/lib/mysql-files/hospitals.csv'
+into table hospital' at line 1
+mysql> exit
+Bye
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$  [7m(hospital_id, name, address, size, type, accreditation_sta[27m[7mt[27m[7mus);[27m[A]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [C(hospital_id, name, address, size, type, accreditation_status);[K[K[K[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[7m/sudo ls -l /var/lib/mysql-files/[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C/sudo ls -l /var/lib/mysql-files/
+[?2004lbash: /sudo: No such file or directory
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ cp
+[?2004lcp: missing file operand
+Try 'cp --help' for more information.
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7m/sudo ls -l /var/lib/mysql-files/[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C/sudo ls -l /var/lib/mysql-files/
+[?2004lbash: /sudo: No such file or directory
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ ls data
+[?2004ldoctors.csv  hospitals.csv  patients.csv  prescriptions.csv
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7msudo cp data/*.csv /var/lib/mysql-files/[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo cp data/*.csv /var/lib/mysql-files/
+[?2004l[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7msudo ls -l /var/lib/mysql-files/[27msudo ls -l /var/lib/mysql-files/
+[?2004ltotal 88
+-rw-r--r-- 1 root root  8851 Oct 24 01:18 doctors.csv
+-rw-r--r-- 1 root root  4230 Oct 24 01:18 hospitals.csv
+-rw-r--r-- 1 root root 52201 Oct 24 01:18 patients.csv
+-rw-r--r-- 1 root root 16325 Oct 24 01:18 prescriptions.csv
+[?2004h]0;ubuntu@oa413: ~/health_project[01;32mubuntu@oa413[00m:[01;34m~/health_project[00m$ [7mmysql --local-infile=1 -u hds -p[27mmysql --local-infile=1 -u hds -p
+[?2004lEnter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 66
+Server version: 8.0.43-0ubuntu0.22.04.2 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> load data infile '/var/lib/mysql-files/hospitals.csv'
+    -> into table hospitals
+    -> fields terminated by ','
+    -> optionally enclosed by '"'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (hospital_id, name, address, size, type, accreditation_status);
+ERROR 1046 (3D000): No database selected
+mysql> use healthdb;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> [8Guse healthdb;[8Gload data infile '/var/lib/mysql-files/hospitals.csv' into table hospitals fields t erminated by ',' optionally enclosed by '"' lines terminated by '\n' ignore 1 lines (hospi tal_id, name, address, size, type, accreditation_status);
+Query OK, 40 rows affected (0.11 sec)
+Records: 40  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql>  # verify the data loaded
+mysql> select * from hospitals limit 5;
++-------------+-------------------------+-----------------------------------------------------------+------+-----------+----------------------+
+| hospital_id | name                    | address                                                   | size | type      | accreditation_status |
++-------------+-------------------------+-----------------------------------------------------------+------+-----------+----------------------+
+|           1 | Acevedo-Lee Hospital    | 2696 Robinson Flat Lake Nicholas, ID 92919                |  169 | Community | Not Accredited       |
+|           2 | Kramer LLC Hospital     | 86649 Michael Groves Jonesmouth, VA 80169                 |   72 | Specialty | Accredited           |
+|           3 | Le-Adkins Hospital      | 59769 Williams Meadows Apt. 326 South Lynnmouth, TX 78053 |   61 | Teaching  | Accredited           |
+|           4 | Warren-Vasquez Hospital | 70076 Johnathan Station Suite 610 North Kathryn, RI 46802 |  169 | Community | Not Accredited       |
+|           5 | Gonzalez PLC Hospital   | 2315 Mark Road Apt. 063 Debraview, MA 58537               |  187 | Research  | Accredited           |
++-------------+-------------------------+-----------------------------------------------------------+------+-----------+----------------------+
+5 rows in set (0.00 sec)
+
+mysql> load data infile '/var/lib/mysql-files/doctors.csv'
+    -> into table doctors
+    -> fields terminated by ','
+    -> optionally enclosed by '"'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (person_id, name, date_of_birth, address, role, hospital_id);
+Query OK, 100 rows affected (0.08 sec)
+Records: 100  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql> # verify the data loaded
+mysql> select * from doctors limit 5;
++-----------+----------------------+---------------+----------------------------------------------------------+--------+-------------+
+| person_id | name                 | date_of_birth | address                                                  | role   | hospital_id |
++-----------+----------------------+---------------+----------------------------------------------------------+--------+-------------+
+|         1 | Dr. Joshua Wright    | 1971-10-11    | 291 Davis Drives Lake Sueside, MI 33513                  | Doctor |          22 |
+|         2 | Dr. Ashley Hooper    | 1991-12-19    | 34614 Trevino Camp Andrewsid
