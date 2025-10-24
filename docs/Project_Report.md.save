@@ -7,7 +7,7 @@
 # Introduction
 
 This project involves the development of a Health Data Analytics System using MySQL as the relational database management system, with all operations performed via command-line tools and GitHub used for version control to ensure reproducibility and proper tracking of changes. The dataset is structured around four primary entities: Hospitals, Doctors, Patients, and Prescriptions. These entities are interrelated, forming a normalized relational database that allows complex queries to extract meaningful insights.
-Using this system,it is possible to answer questions such as:
+Using this system, it is possible to answer questions such as:
 •	Which doctors are associated with which hospitals
 •	The prescription history for individual patients
 •	Identification of the most active prescribing doctors
@@ -15,22 +15,25 @@ Using this system,it is possible to answer questions such as:
 The workflow encompassed the entire database lifecycle: importing raw data, creating tables, normalizing the data to reduce redundancy, and writing SQL queries to retrieve insights. All steps were executed via the command line to support automation, ensure reproducibility, and facilitate version-controlled collaboration through GitHub.
 
 
+
 #  Project structure:
 
 health-data-analytics/
+│
 ├── data/
-│ ├── doctors.csv
-│ ├── hospitals.csv
-│ ├── patients.csv
-│ └── prescriptions.csv
-├── docs/
-│ ├── ERD.md
-│ ├── Project_Report.md
-│ ├── README.md
-│ └── flowchart.md
-├── output/
-│ └── screen_output.txt
-└── sql/
+│   ├──doctors.csv
+│   ├── hospitals.csv
+│   ├── patients.csv
+│   └── prescriptions.csv
+│
+├─docs
+│   ├── ERD.md
+│   ├── Project_Report.md
+│   ├── README.md
+│   └── flowchart.md
+├── output
+│     └── screen_output.txt 
+└── Sql
 
 
 # Pseudocode Summary
@@ -62,7 +65,6 @@ END
 | data/doctors.csv              | Contains doctor records linked to hospitals   |
 | data/patients.csv             | Contains patient records linked to doctors    |
 | data/prescriptions.csv        | Contains prescriptions linked to patients/doctors |
-
 
 ## Database Design
 
@@ -131,9 +133,9 @@ All commands and scripts were verified and executed manually the me.
          
 ## References
 
-   
-• MySQL Documentation: https://dev.mysql.com/doc/
-• GitHub Guides: https://guides.github.com/
-• ChatGPT (OpenAI) Assistance for structure and syntax
-• SQL Tutorial:  https://www.w3schools.com
-• SQL Tutorial:  https://www.tutorialspoint.com/mysql/index.htm
+    
+•       MySQL Documentation: https://dev.mysql.com/doc/
+• 	GitHub Guides: https://guides.github.com/
+• 	ChatGPT (OpenAI) Assistance for structure and syntax
+•       SQL Tutorial:  https://www.w3schools.com
+•       SQL Tutorial:  https://www.tutorialspoint.com/mysql/index.htm
