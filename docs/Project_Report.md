@@ -4,8 +4,6 @@
 ## Student Id: 750095679
 
 
-# Introduction
-
 ## Introduction
 
 This project involves the development of a **Health Data Analytics System** using **MySQL** as the relational database management system, with all operations performed via **command-line tools** and **GitHub** used for version control to ensure reproducibility and proper tracking of changes.
@@ -20,29 +18,6 @@ Using this system, it is possible to answer analytical questions such as:
 - Determination of the hospital with the highest patient capacity  
 
 The workflow encompassed the entire **database lifecycle** — importing raw data, creating tables, normalizing the data to reduce redundancy, and writing SQL queries to retrieve insights. All steps were executed via the **command line** to support automation, ensure reproducibility, and facilitate **version-controlled collaboration** through GitHub.
-
-
-
-#  Project structure:
-
-# Project Report: Health Data Analytics System
-
-## Introduction
-
-This project involves the development of a **Health Data Analytics System** using **MySQL** as the relational database management system, with all operations performed via **command-line tools** and **GitHub** used for version control to ensure reproducibility and proper tracking of changes.
-
-The dataset is structured around four primary entities: **Hospitals**, **Doctors**, **Patients**, and **Prescriptions**. These entities are interrelated, forming a **normalized relational database** that allows complex queries to extract meaningful insights.
-
-Using this system, it is possible to answer analytical questions such as:
-
-- Which doctors are associated with which hospitals  
-- The prescription history for individual patients  
-- Identification of the most active prescribing doctors  
-- Determination of the hospital with the highest patient capacity  
-
-The workflow encompassed the entire **database lifecycle** — importing raw data, creating tables, normalizing the data to reduce redundancy, and writing SQL queries to retrieve insights. All steps were executed via the **command line** to support automation, ensure reproducibility, and facilitate **version-controlled collaboration** through GitHub.
-
----
 
 ## Project Structure
 
@@ -67,7 +42,8 @@ health-data-analytics/
 └── sql/
 
 
-# Pseudocode
+
+## Pseudocode
 
  BEGIN
   ↓
@@ -89,17 +65,16 @@ health-data-analytics/
   ↓
 END
 
-# Objectives
+## Objectives
 
--	Create a MySQL database from pre-populated .csv files.
--	Perform data normalization and ensure referential integrity using primary and foreign keys.
--	Run SQL queries to retrieve and analyze data relationships.
--	Maintain a version-controlled project using Git and GitHub.
--	Document the workflow with pseudocode, flowchart, and ERD (Entity Relationship Diagram).
+-       Create a MySQL database from pre-populated .csv files.
+-       Perform data normalization and ensure referential integrity using primary and foreign keys.
+-       Run SQL queries to retrieve and analyze data relationships.
+-       Maintain a version-controlled project using Git and GitHub.
+-       Document the workflow with pseudocode, flowchart, and ERD (Entity Relationship Diagram).
 
 
-
-##  Dataset Overview
+## Dataset Overview
 
 | File Name                    | Description                                      |
 |-------------------------------|------------------------------------------------|
@@ -108,9 +83,8 @@ END
 | data/patients.csv             | Contains patient records linked to doctors    |
 | data/prescriptions.csv        | Contains prescriptions linked to patients/doctors |
 
-## Database Design
 
-*'  Database Name: healthdbhealth_db
+## Database Desig
 
 The system consists of four main tables:
 
@@ -137,22 +111,23 @@ All SQL files were stored in the /sql/ directory:
 * Checked for missing values:
 *  Checked for duplicates:
 * Verified foreign key integrity:
-* No missing references were found, confirming successful normalization.
+* No missing references were found, confirming successful normalization:
 
 ## Analytical Queries
 
-*' Query Purpose Importance / Insight Gained
 
-| Query                                                                                                                                                                                | Purpose                                                    | Importance / Insight Gained                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `SELECT d.name, h.name FROM doctors d JOIN hospitals h ON d.hospital_id=h.hospital_id WHERE h.name='Central City Hospital';`                                                         | Retrieve all doctors based at a specific hospital          | Helps administrators see which doctors work at which hospital, useful for staff management and resource allocation |
-| `SELECT p.name, pr.medication, pr.prescription_date FROM prescriptions pr JOIN patients p ON pr.patient_id=p.patient_id WHERE p.name='John Doe' ORDER BY pr.prescription_date DESC;` | List a patient’s prescription history ordered by date      | Allows doctors and pharmacists to review patient medication history and prevent duplication or drug interactions   |
-| `INSERT INTO patients (patient_id, name, date_of_birth, address, role, doctor_id) VALUES (301, 'Jane Smith', '1990-02-18', '15 River Street', 'Patient', 105);`                      | Register new patients in the system                        | Ensures new patients are added and linked to a doctor for accountability                                           |
-| `SELECT doctor_id, COUNT(*) AS total_prescriptions FROM prescriptions GROUP BY doctor_id ORDER BY total_prescriptions DESC LIMIT 1;`                                                 | Identify the most active prescribing doctor                | Highlights workload and prescribing patterns, useful for performance monitoring and workload management            |
-| `SELECT d.name, h.size FROM doctors d JOIN hospitals h ON d.hospital_id=h.hospital_id WHERE h.size=(SELECT MAX(size) FROM hospitals);`                                               | Find doctors working at the hospital with maximum capacity | Helps in understanding staff distribution across facilities and resource planning                                  |
-| `SELECT * FROM patients WHERE name IS NULL OR doctor_id IS NULL;`                                                                                                                    | Check for missing or incomplete patient data               | Ensures data quality and consistency; prevents incomplete records from affecting analytics                         |
-| `SELECT name, date_of_birth, COUNT(*) AS duplicate_count FROM patients GROUP BY name, date_of_birth HAVING COUNT(*) > 1;`                                                            | Detect duplicate patient records                           | Maintains a clean and accurate dataset, prevents double counting or inconsistent medical histories                 |
-| `SELECT * FROM prescriptions WHERE prescription_date BETWEEN '2024-01-01' AND '2024-12-31';`                                                                                         | List prescriptions within a date range                     | Enables time-based analysis of prescription patterns; useful for reporting and trend analysis                      |
+## Analytical Queries
+
+
+| Query | Purpose | Importance / Insight Gained |
+|-------|---------|-----------------------------|
+| `SELECT d.name, h.name FROM doctors d JOIN hospitals h ON d.hospital_id=h.hospital_id WHERE h.name='Central City Hospital';` | Retrieve all doctors based at a specific hospital | Helps administrators see which doctors work at which hospital,<br>useful for staff management and resource allocation |
+| `SELECT p.name, pr.medication, pr.prescription_date FROM prescriptions pr JOIN patients p ON pr.patient_id=p.patient_id WHERE p.name='John Doe' ORDER BY pr.prescription_date DESC;` | List a patient’s prescription history ordered by date | Allows doctors and pharmacists to review patient medication history,<br>and prevent duplication or drug interactions |
+| `INSERT INTO patients (patient_id, name, date_of_birth, address, role, doctor_id) VALUES (301, 'Jane Smith', '1990-02-18', '15 River Street', 'Patient', 105);` | Register new patients in the system | Ensures new patients are added and linked to a doctor for accountability |
+| `SELECT doctor_id, COUNT(*) AS total_prescriptions FROM prescriptions GROUP BY doctor_id ORDER BY total_prescriptions DESC LIMIT 1;` | Identify the most active prescribing doctor | Highlights workload and prescribing patterns,<br>useful for performance monitoring and workload management |
+| `SELECT d.name, h.size FROM doctors d JOIN hospitals h ON d.hospital_id=h.hospital_id WHERE h.size=(SELECT MAX(size) FROM hospitals);` | Find doctors working at the hospital with maximum capacity | Helps in understanding staff distribution across facilities,<br>and resource planning |
+| `SELECT * FROM patients WHERE name IS NULL OR doctor_id IS NULL;` | Check for missing or incomplete patient data | Ensures data quality and consistency;<br>prevents incomplete records from affecting analytics |
+| `SELECT name, date_of_birth, COUNT(*) AS duplicate_count FROM patients GROUP BY name, date_of_birth HAVING COUNT(*) > 1;` | Detect duplicate patient records | Maintains a clean and accurate dataset;<br>prevents double counting or inconsistent medical histories |
 
 
 ## Version Control (Git & GitHub)
@@ -165,7 +140,7 @@ This project successfully designed and implemented a structured health database 
 
 ## Declaration of AI Integration
 •	This project was developed with assistance from ChatGPT (OpenAI) to guide with syntax, documentation structure, and explanations.
-All commands and scripts were verified and executed manually the me.
+• 	All commands and scripts were verified and executed manually the me.
 •	AI-supported/AI-integrated use is permitted in this assessment. I acknowledge the following uses of GenAI tools in this assessment:
 
          - I have used GenAI tools to help me understand key theories and concepts.
