@@ -22,7 +22,7 @@ All operations (database creation, table setup, data loading, and queries) are p
 
 ---
 
-## Project Structure
+## Data Structure
 
 ```plaintext
 health-data-analytics/
@@ -44,4 +44,26 @@ health-data-analytics/
 │
 └── sql/
 
----
+
+# Pseudocode
+
+BEGIN
+  ↓
+  CONNECT to MySQL server
+  ↓
+  CREATE DATABASE health_db
+  ↓
+  CREATE tables → (hospitals, doctors, patients, prescriptions)
+  ↓
+  LOAD data from CSV files → INTO tables
+  ↓
+  CHECK for missing or duplicate data
+  ↓
+  DEFINE foreign key relationships → (set up links between tables)
+  ↓
+  RUN analytical queries → to extract insights
+  ↓
+  COMMIT all project files → to GitHub repository
+  ↓
+END
+
