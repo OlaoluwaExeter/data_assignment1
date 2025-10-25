@@ -88,12 +88,13 @@ Hospitals (1) ────< (M) Doctors (1) ────< (M) Patients (1) ─�
 ## Analytical Queries
 
 | Query | Purpose | Importance / Insight Gained |
-|-------|---------|----------------------------|
-| `SELECT * FROM doctors WHERE hospital_id = 3;` | Find all doctors at a specific hospital. | Helps hospital admin manage staff and schedules. |
-| `SELECT p.name, pr.medication FROM prescriptions pr JOIN patients p ON pr.patient_id=p.patient_id;` | View each patient's prescription history. | Useful for monitoring medication patterns and preventing duplication. |
-| `SELECT doctor_id, COUNT(*) AS total_prescriptions FROM prescriptions GROUP BY doctor_id ORDER BY total_prescriptions DESC LIMIT 1;` | Identify the most active prescribing doctor. | Recognizes high-performing or overworked doctors. |
-| `SELECT h.name, h.size FROM hospitals h ORDER BY h.size DESC LIMIT 1;` | Find the hospital with the highest capacity. | Helps management understand resource distribution. |
-| `SELECT * FROM patients WHERE doctor_id IS NULL;` | Detect patients not assigned to a doctor. | Ensures every patient is linked to a healthcare provider. |
+|-------|---------|-----------------------------|
+| `SELECT d.name AS DoctorName, h.name AS HospitalName FROM doctors d JOIN hospitals h ON d.hospital_id = h.hospital_id WHERE d.hospital_id = 1;` | List all doctors in a specific hospital | Helps administrators understand which doctors work in a particular hospital for staffing and resource management |
+| `SELECT p.prescription_id, pa.name AS PatientName, p.medication, p.prescription_date FROM prescriptions p JOIN patients pa ON p.patient_id = pa.person_id WHERE p.doctor_id = 5 ORDER BY p.prescription_date;` | List all prescriptions issued by a specific doctor | Useful for monitoring a doctor’s prescribing patterns and patient care history |
+| `SELECT p.prescription_id, p.medication, p.prescription_date, d.name AS DoctorName FROM prescriptions p JOIN doctors d ON p.doctor_id = d.person_id WHERE p.patient_id = 105 ORDER BY p.prescription_date;` | Show prescription history for a specific patient | Ensures accurate patient records and helps prevent drug interactions or duplication |
+| `INSERT INTO patients (person_id, name, date_of_birth, address, role, doctor_id) VALUES (1099, 'John Doe', '1992-07-10', '23 Main Street', 'patient', 5); SELECT * FROM patients WHERE person_id = 999;` | Register a new patient and verify entry | Ensures new patients are added correctly and linked to a doctor for accountability |
+| `SELECT d.person_id AS DoctorID, d.name AS DoctorName, COUNT(p.prescription_id) AS TotalPrescriptions FROM prescriptions p JOIN doctors d ON p.doctor_id = d.person_id GROUP BY d.person_id, d.name ORDER BY TotalPrescriptions DESC LIMIT 1;` | Identify the most active prescribing doctor | Highlights workload, performance, and trends in prescribing practices |
+| `SELECT d.person_id AS DoctorID, d.name AS DoctorName, d.role AS DoctorRole, h.name AS HospitalName, h.size AS HospitalBeds FROM doctors d JOIN hospitals h ON d.hospital_id = h.hospital_id WHERE h.size = (SELECT MAX(size) FROM hospitals) ORDER BY d.name;` | List doctors working at the hospital with the largest capacity | Helps in planning staff distribution, understanding resource allocation, and managing hospital capacity effectively |
 
 
 ## Version Control (Git & GitHub)
