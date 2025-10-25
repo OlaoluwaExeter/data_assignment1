@@ -39,7 +39,7 @@ The workflow encompassed the entire database lifecycle — importing raw data, c
 | data/prescriptions.csv        | Contains prescriptions linked to patients/doctors 
 
 
-## Database Desig
+## Database Design
 
 The system consists of four main tables:
 
@@ -56,18 +56,34 @@ The system consists of four main tables:
 
 Hospitals (1) ────< (M) Doctors (1) ────< (M) Patients (1) ────< (M) Prescriptions
 
-## SQL Implementation
+*	One HOSPITAL → Many DOCTORS
+* 	One DOCTOR → Many PATIENTS
+*	One PATIENT → Many PRESCRIPTIONS
+*	One DOCTOR → Many PRESCRIPTIONS
 
-All SQL files were stored in the /sql/ directory:
+## Database Creation**  
+   * A new database called `health_db` was created using `CREATE DATABASE health_db;`.
+   * All subsequent tables and queries were executed within this database.
+
+## Data Loading**  
+   * Pre-populated CSV files were imported into each table using `LOAD DATA INFILE`.
+   * Data was checked for missing values and duplicates before analysis.
+
+## Command-Line Execution**  
+   * All SQL commands were executed via the MySQL command line.
+   * Output was stored in a log file (`screen_output.txt`) for reproducibility.
+
+## Version Control**  
+   * SQL scripts and command outputs were maintained in the project repository on GitHub.
+   This ensured that all database operations, queries, and results were **reproducible** and **tracked for changes**.
 
 ## Data Normalization and Verification
 
-* To ensure data consistency:
-
-* Checked for missing values:
-*  Checked for duplicates:
-* Verified foreign key integrity:
-* No missing references were found, confirming successful normalization:
+* To ensure data consistency.
+* Checked for missing values.
+* Checked for duplicates.
+* Verified foreign key integrity.
+* No missing references were found, confirming successful normalization. 
 
 ## Analytical Queries
 
