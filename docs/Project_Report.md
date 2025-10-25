@@ -61,19 +61,19 @@ Hospitals (1) ────< (M) Doctors (1) ────< (M) Patients (1) ─�
 *	One PATIENT → Many PRESCRIPTIONS
 *	One DOCTOR → Many PRESCRIPTIONS
 
-## Database Creation**  
+## Database Creation  
    * A new database called `health_db` was created using `CREATE DATABASE health_db;`.
    * All subsequent tables and queries were executed within this database.
 
-## Data Loading**  
+## Data Loading  
    * Pre-populated CSV files were imported into each table using `LOAD DATA INFILE`.
    * Data was checked for missing values and duplicates before analysis.
 
-## Command-Line Execution**  
+## Command-Line Execution  
    * All SQL commands were executed via the MySQL command line.
    * Output was stored in a log file (`screen_output.txt`) for reproducibility.
 
-## Version Control**  
+## Version Control  
    * SQL scripts and command outputs were maintained in the project repository on GitHub.
    This ensured that all database operations, queries, and results were **reproducible** and **tracked for changes**.
 
@@ -105,15 +105,15 @@ All project files were version-controlled using Git.
 This project successfully designed and implemented a structured health database with well-defined relationship.
 
 ## Declaration of AI Integration
-•       This project was developed with assistance from ChatGPT (OpenAI) to guide with syntax, documentation.
-• 	All commands and scripts were verified and executed manually the me.
-•       AI-supported/AI-integrated use is permitted in this assessment. 
-•	I acknowledge the following uses :
+* This project was developed with assistance from ChatGPT (OpenAI) to guide with syntax, documentation.
+* All commands and scripts were verified and executed manually the me.
+*  AI-supported/AI-integrated use is permitted in this assessment. 
+* I acknowledge the following uses :
 
-         - I have used GenAI tools to help me understand key theories and concepts.
-         - I have used GenAI tools to suggest a plan or structure for my assessment.
-         - I have used GenAI tool to generate images, figures or diagrams.
-         - I have used GenAI to deal with error in my Database implementatio.
+- I have used GenAI tools to help me understand key theories and concepts.
+- I have used GenAI tools to suggest a plan or structure for my assessment.
+- I have used GenAI tool to generate images, figures or diagrams.
+- I have used GenAI to deal with error in my Database implementation.
 
 
 ## References
