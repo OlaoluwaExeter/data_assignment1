@@ -6,48 +6,89 @@
 
 # Introduction
 
-This project involves the development of a Health Data Analytics System using MySQL as the relational database management system, with all operations performed via command-line tools and GitHub used for version control to ensure reproducibility and proper tracking of changes. The dataset is structured around four primary entities: Hospitals, Doctors, Patients, and Prescriptions. These entities are interrelated, forming a normalized relational database that allows complex queries to extract meaningful insights.
-Using this system, it is possible to answer questions such as:
-•	Which doctors are associated with which hospitals
-•	The prescription history for individual patients
-•	Identification of the most active prescribing doctors
-•	Determination of the hospital with the highest patient capacity
-The workflow encompassed the entire database lifecycle: importing raw data, creating tables, normalizing the data to reduce redundancy, and writing SQL queries to retrieve insights. All steps were executed via the command line to support automation, ensure reproducibility, and facilitate version-controlled collaboration through GitHub.
+## Introduction
+
+This project involves the development of a **Health Data Analytics System** using **MySQL** as the relational database management system, with all operations performed via **command-line tools** and **GitHub** used for version control to ensure reproducibility and proper tracking of changes.
+
+The dataset is structured around four primary entities: **Hospitals**, **Doctors**, **Patients**, and **Prescriptions**. These entities are interrelated, forming a **normalized relational database** that allows complex queries to extract meaningful insights.
+
+Using this system, it is possible to answer analytical questions such as:
+
+- Which doctors are associated with which hospitals  
+- The prescription history for individual patients  
+- Identification of the most active prescribing doctors  
+- Determination of the hospital with the highest patient capacity  
+
+The workflow encompassed the entire **database lifecycle** — importing raw data, creating tables, normalizing the data to reduce redundancy, and writing SQL queries to retrieve insights. All steps were executed via the **command line** to support automation, ensure reproducibility, and facilitate **version-controlled collaboration** through GitHub.
 
 
 
 #  Project structure:
 
+# Project Report: Health Data Analytics System
+
+## Introduction
+
+This project involves the development of a **Health Data Analytics System** using **MySQL** as the relational database management system, with all operations performed via **command-line tools** and **GitHub** used for version control to ensure reproducibility and proper tracking of changes.
+
+The dataset is structured around four primary entities: **Hospitals**, **Doctors**, **Patients**, and **Prescriptions**. These entities are interrelated, forming a **normalized relational database** that allows complex queries to extract meaningful insights.
+
+Using this system, it is possible to answer analytical questions such as:
+
+- Which doctors are associated with which hospitals  
+- The prescription history for individual patients  
+- Identification of the most active prescribing doctors  
+- Determination of the hospital with the highest patient capacity  
+
+The workflow encompassed the entire **database lifecycle** — importing raw data, creating tables, normalizing the data to reduce redundancy, and writing SQL queries to retrieve insights. All steps were executed via the **command line** to support automation, ensure reproducibility, and facilitate **version-controlled collaboration** through GitHub.
+
+---
+
+## Project Structure
+
+```plaintext
 health-data-analytics/
 │
 ├── data/
-│   ├──doctors.csv
+│   ├── doctors.csv
 │   ├── hospitals.csv
 │   ├── patients.csv
 │   └── prescriptions.csv
 │
-├─docs
+├── docs/
 │   ├── ERD.md
 │   ├── Project_Report.md
 │   ├── README.md
 │   └── flowchart.md
-├── output
-│     └── screen_output.txt 
-└── Sql
+│
+├── output/
+│   └── screen_output.txt
+│
+└── sql/
 
 
-# Pseudocode Summary
+# Pseudocode
 
-BEGIN
+ BEGIN
+  ↓
   CONNECT to MySQL server
+  ↓
   CREATE DATABASE health_db
-  CREATE tables (hospitals, doctors, patients, prescriptions)
-  LOAD data from CSV files into tables
-  CHECK for missing/duplicate data
-  DEFINE foreign key relationships
-  RUN analytical queries for insights
-  COMMIT project files to GitHub
+  ↓
+  CREATE tables → (hospitals, doctors, patients, prescriptions)
+  ↓
+  LOAD data from CSV files → INTO tables
+  ↓
+  CHECK for missing or duplicate data
+  ↓
+  DEFINE foreign key relationships → (set up links between tables)
+  ↓
+  RUN analytical queries → to extract insights
+  ↓
+  COMMIT all project files → to GitHub repository
+  ↓
 END
+
 # Objectives
 
 -	Create a MySQL database from pre-populated .csv files.
@@ -55,6 +96,7 @@ END
 -	Run SQL queries to retrieve and analyze data relationships.
 -	Maintain a version-controlled project using Git and GitHub.
 -	Document the workflow with pseudocode, flowchart, and ERD (Entity Relationship Diagram).
+
 
 
 ##  Dataset Overview
@@ -90,12 +132,12 @@ All SQL files were stored in the /sql/ directory:
 
 ## Data Normalization and Verification
 
-*' To ensure data consistency:
+* To ensure data consistency:
 
-1. Checked for missing values:
-2. Checked for duplicates:
-3. Verified foreign key integrity:
-4. No missing references were found, confirming successful normalization.
+* Checked for missing values:
+*  Checked for duplicates:
+* Verified foreign key integrity:
+* No missing references were found, confirming successful normalization.
 
 ## Analytical Queries
 
@@ -133,9 +175,8 @@ All commands and scripts were verified and executed manually the me.
          
 ## References
 
-    
-•       MySQL Documentation: https://dev.mysql.com/doc/
-• 	GitHub Guides: https://guides.github.com/
-• 	ChatGPT (OpenAI) Assistance for structure and syntax
-•       SQL Tutorial:  https://www.w3schools.com
-•       SQL Tutorial:  https://www.tutorialspoint.com/mysql/index.htm
+- MySQL Documentation: [https://dev.mysql.com/doc/](https://dev.mysql.com/doc/)  
+- GitHub Guides: [https://guides.github.com/](https://guides.github.com/)  
+- ChatGPT (OpenAI) Assistance for structure and syntax  
+- SQL Tutorial: [https://www.w3schools.com](https://www.w3schools.com)  
+

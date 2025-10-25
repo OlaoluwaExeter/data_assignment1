@@ -19,18 +19,29 @@ All operations (database creation, table setup, data loading, and queries) are p
 - Save all terminal outputs for reproducibility. 
 - Upload the entire project to GitHub for version control.
 
+
 ---
+
+## Project Structure
+
+```plaintext
 health-data-analytics/
+│
 ├── data/
-│ ├── doctors.csv
-│ ├── hospitals.csv
-│ ├── patients.csv
-│ └── prescriptions.csv
+│   ├── doctors.csv
+│   ├── hospitals.csv
+│   ├── patients.csv
+│   └── prescriptions.csv
+│
 ├── docs/
-│ ├── ERD.md
-│ ├── Project_Report.md
-│ ├── README.md
-│ └── flowchart.md
+│   ├── ERD.md
+│   ├── Project_Report.md
+│   ├── README.md
+│   └── flowchart.md
+│
 ├── output/
-│ └── screen_output.txt
+│   └── screen_output.txt
+│
 └── sql/
+
+---
