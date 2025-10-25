@@ -21,25 +21,31 @@ The workflow encompassed the entire **database lifecycle** — importing raw dat
 
 ## Project Structure
 
+```plaintext
 health-data-analytics/
+│
 ├── data/
 │   ├── doctors.csv
 │   ├── hospitals.csv
 │   ├── patients.csv
 │   └── prescriptions.csv
+│
 ├── docs/
 │   ├── ERD.md
 │   ├── Project_Report.md
 │   ├── README.md
 │   └── flowchart.md
+│
 ├── output/
 │   └── screen_output.txt
+│
 └── sql/
+
 
 
 ## Pseudocode
 
- BEGIN
+BEGIN
   ↓
   CONNECT to MySQL server
   ↓
@@ -61,11 +67,12 @@ END
 
 ## Objectives
 
--       Create a MySQL database from pre-populated .csv files.
--       Perform data normalization and ensure referential integrity using primary and foreign keys.
--       Run SQL queries to retrieve and analyze data relationships.
--       Maintain a version-controlled project using Git and GitHub.
--       Document the workflow with pseudocode, flowchart, and ERD (Entity Relationship Diagram).
+- Create a MySQL database from pre-populated `.csv` files.  
+- Perform data normalization and ensure referential integrity using foreign keys.  
+- Run SQL queries to retrieve and analyze data relationships.  
+- Maintain a version-controlled project using Git and GitHub.  
+- Document the workflow with pseudocode, flowchart, and ERD (Entity-Relationship Diagram).
+
 
 ## Dataset Overview
 
@@ -140,12 +147,10 @@ This project successfully designed and implemented a structured health database 
 
 ## References
 
-
-•       MySQL Documentation: https://dev.mysql.com/doc/.
-•       GitHub Guides: https://guides.github.com/.
-•       ChatGPT (OpenAI) Assistance for structure and syntax.
-•       SQL Tutorial:  https://www.w3schools.com.
-•       SQL Tutorial:  https://www.tutorialspoint.com/mysql/index.htm.
+- MySQL Documentation: [https://dev.mysql.com/doc/](https://dev.mysql.com/doc/)  
+- GitHub Guides: [https://guides.github.com/](https://guides.github.com/)  
+- ChatGPT (OpenAI) Assistance for structure and syntax  
+- SQL Tutorial: [https://www.w3schools.com](https://www.w3schools.com)  
 
 
          
